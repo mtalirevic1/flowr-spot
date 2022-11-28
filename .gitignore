@@ -13,6 +13,7 @@ dist-ssr
 *.local
 
 package-lock.json
+flowrspot-requests.http
 
 # Editor directories and files
 .vscode/*
