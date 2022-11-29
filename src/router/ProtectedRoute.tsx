@@ -10,10 +10,12 @@ type ProtectedRouteProps = {
     outlet: JSX.Element
 }
 
-export const ProtectedRoute: FC<ProtectedRouteProps> = ({redirectPath, outlet}) => {
+const ProtectedRoute: FC<ProtectedRouteProps> = ({redirectPath, outlet}) => {
     const {isLoggedIn} = useSelector((state: RootState) => state.auth)
     if (isLoggedIn) {
         return outlet
     }
     return <Navigate to={{pathname: redirectPath}} replace/>
-    }
+}
+
+export default ProtectedRoute
