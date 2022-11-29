@@ -3,6 +3,7 @@ import {store} from './redux/store'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 import createTheme from './theme'
 import {THEME} from './theme/types'
+import Layout from "./components/Layout";
 
 const App = () => {
     const theme = createTheme(THEME.DEFAULT)
@@ -10,7 +11,7 @@ const App = () => {
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <p></p>
+                <Layout/>
             </ThemeProvider>
         </Provider>
     )
