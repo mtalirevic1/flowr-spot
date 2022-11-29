@@ -1,6 +1,6 @@
 import {Provider} from 'react-redux'
 import {store} from './redux/store'
-import {ThemeProvider} from '@mui/material'
+import {CssBaseline, ThemeProvider} from '@mui/material'
 import createTheme from './theme'
 import {THEME} from './theme/types'
 
@@ -9,6 +9,7 @@ const App = () => {
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
+                <CssBaseline/>
                 <p></p>
             </ThemeProvider>
         </Provider>

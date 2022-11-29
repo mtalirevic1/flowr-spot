@@ -8,9 +8,9 @@ type ThemePalette = {
 const palette : ThemePalette = {
     [THEME.DEFAULT]: {
         primary: {
-            main: '#0045AC',
+            main: '#ECBCB3',
             contrastText: '#FFF',
-            light: '#1976D2'
+            light: '#EAA79E'
         },
         secondary: {
             main: '#1e19bd',
