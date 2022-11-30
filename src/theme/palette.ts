@@ -19,8 +19,9 @@ const palette : ThemePalette = {
             background: '#1976D2'
         },
         neutral: {
-            main: '#767676',
-            light: '#EFEFEF',
+            main: '#949EA0',
+            background: '#DFE5EA',
+            light: '#D4D8D9',
         },
         success: {
             main: '#5fb760'
