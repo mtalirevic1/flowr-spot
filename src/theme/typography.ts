@@ -33,9 +33,9 @@ const typography: TypographyOptions = {
         lineHeight: 1.25,
     },
     h5: {
-        fontSize: '1.0625rem',
+        fontSize: '14px',
         fontWeight: 500,
-        lineHeight: 1.25,
+        lineHeight: '14px',
     },
     h6: {
         fontSize: '1rem',

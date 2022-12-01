@@ -5,6 +5,7 @@ import components from './components'
 import {THEME} from './types'
 import palette from './palette'
 import shadows from './shadows'
+import zIndex from './zIndex'
 
 const createTheme = (name: THEME) => {
     let themePalette = palette[name]
@@ -22,6 +23,7 @@ const createTheme = (name: THEME) => {
             typography: typography,
             shadows: shadows,
             palette: themePalette,
+            zIndex: zIndex
         },
         {
             name,
@@ -41,7 +43,16 @@ declare module '@mui/material/styles' {
         background?: string
     }
 
+    interface TypographyPropsColorOverrides {
+        neutral: true
+    }
 
+}
+
+declare module '@mui/material/Typography' {
+    interface TypographyPropsColorOverrides {
+        neutral: true
+    }
 }
 
 export default createTheme
