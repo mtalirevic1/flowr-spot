@@ -1,44 +1,66 @@
-import {FC} from 'react'
 import {Drawer, List, Typography} from "@mui/material"
-import {ListItemText, ListItemButton} from './Style'
+import {ListItemText, ListItemButton, ButtonContainer, PrimaryButton} from './Style'
 import {useNavigate} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
+import {setIsNavDrawerOpen} from "../../redux/slices/uiSlice";
 
-type NavDrawerProps = {
-    open: boolean
-}
-
-const NavDrawer: FC<NavDrawerProps> = ({open}) => {
+const NavDrawer = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const {isLoggedIn, user} = useSelector((state: RootState) => state.auth)
+    const {isNavDrawerOpen} = useSelector((state: RootState) => state.ui)
+
+    const handleNavClick = (path: string) => {
+        navigate(path)
+        dispatch(setIsNavDrawerOpen(false))
+    }
+
+    const handleLoginClick = () => {
+        dispatch(setIsNavDrawerOpen(false))
+    }
+
+    const handleRegisterClick = () => {
+        dispatch(setIsNavDrawerOpen(false))
+    }
+
+    const handleUserClick = () => {
+        dispatch(setIsNavDrawerOpen(false))
+    }
+
     return (
         <Drawer
-            open={open}
+            open={isNavDrawerOpen}
             variant="temporary"
             anchor="right"
         >
             <List
                 sx={{
-                    width: '100vw',
+                    width: {
+                        xs: '100vw',
+                        sm: '50vw',
+                        md: '50vw',
+                        lg: 0,
+                        xl: 0
+                    },
                     mt: `calc(${NAVBAR_HEIGHT} + 100px)`,
                 }}>
-                <ListItemButton onClick={() => navigate('/flowers')}>
+                <ListItemButton onClick={() => handleNavClick('/flowers')}>
                     <ListItemText primary={<Typography variant="h5" color="neutral">Flowers</Typography>}/>
                 </ListItemButton>
-                <ListItemButton onClick={() => navigate('/sightings')}>
+                <ListItemButton onClick={() => handleNavClick('/sightings')}>
                     <ListItemText primary={<Typography variant="h5" color="neutral">Latest Sightings</Typography>}/>
                 </ListItemButton>
                 {isLoggedIn && user &&
                     <>
-                        <ListItemButton onClick={() => navigate('/favorites')}>
+                        <ListItemButton onClick={() => handleNavClick('/favorites')}>
                             <ListItemText primary={<Typography variant="h5" color="neutral">Favorites</Typography>}/>
                         </ListItemButton>
-                        <ListItemButton onClick={() => navigate('/settings')}>
+                        <ListItemButton onClick={() => handleNavClick('/settings')}>
                             <ListItemText primary={<Typography variant="h5" color="neutral">Settings</Typography>}/>
                         </ListItemButton>
-                        <ListItemButton onClick={() => navigate('/favorites')}>
+                        <ListItemButton onClick={handleUserClick}>
                             <ListItemText
                                 primary={
                                     <Typography variant="h5" color="neutral">
@@ -51,7 +73,14 @@ const NavDrawer: FC<NavDrawerProps> = ({open}) => {
                 }
                 {!isLoggedIn &&
                     <>
-
+                        <ListItemButton onClick={handleLoginClick}>
+                            <ListItemText primary={<Typography variant="h5" color="primary">Login</Typography>}/>
+                        </ListItemButton>
+                        <ButtonContainer>
+                            <PrimaryButton variant='contained' onClick={handleRegisterClick}>
+                                New Account
+                            </PrimaryButton>
+                        </ButtonContainer>
                     </>
                 }
             </List>

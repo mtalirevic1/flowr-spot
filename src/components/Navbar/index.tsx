@@ -1,17 +1,21 @@
 import {AppBar, Stack, Toolbar, Typography, useMediaQuery, useTheme} from "@mui/material"
 import Logo from '../../assets/logo.svg'
-import Navigation from './Navigation'
+import NavMenu from './NavMenu'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/store";
 
 const Navbar = () => {
     const theme = useTheme()
-    const isMobile = useMediaQuery(theme.breakpoints.only('xs'))
+    const isNotDesktop = useMediaQuery(theme.breakpoints.between('xs', 'md'))
+    const {isNavDrawerOpen} = useSelector((state: RootState) => state.ui)
     return (
         <AppBar
             elevation={0}
             position="fixed"
             sx={{
-                boxShadow: isMobile ? '0px 15px 30px rgba(0, 0, 0, 0.05)' : '',
+                boxShadow: isNotDesktop && !isNavDrawerOpen
+                    ? '0px 15px 30px rgba(0, 0, 0, 0.05)' : '',
                 backgroundColor: 'white',
             }}>
             <Toolbar variant="dense" sx={{height: NAVBAR_HEIGHT, m: '0 8px 0 8px'}}>
@@ -21,7 +25,7 @@ const Navbar = () => {
                         FlowrSpot
                     </Typography>
                 </Stack>
-                <Navigation/>
+                <NavMenu/>
             </Toolbar>
         </AppBar>
     )
