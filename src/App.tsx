@@ -3,7 +3,8 @@ import {store} from './redux/store'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 import createTheme from './theme'
 import {THEME} from './theme/types'
-import Layout from "./components/Layout";
+import {RouterProvider} from 'react-router-dom'
+import {router} from './router/routes'
 
 const App = () => {
     const theme = createTheme(THEME.DEFAULT)
@@ -11,7 +12,7 @@ const App = () => {
         <Provider store={store}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <Layout/>
+                <RouterProvider router={router}/>
             </ThemeProvider>
         </Provider>
     )
