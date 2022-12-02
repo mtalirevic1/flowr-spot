@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
-import {setIsNavDrawerOpen} from "../../redux/slices/uiSlice";
+import {setIsLoginModalOpen, setIsNavDrawerOpen} from "../../redux/slices/uiSlice"
 
 const NavDrawer = () => {
     const navigate = useNavigate()
@@ -19,6 +19,7 @@ const NavDrawer = () => {
 
     const handleLoginClick = () => {
         dispatch(setIsNavDrawerOpen(false))
+        dispatch(setIsLoginModalOpen(true))
     }
 
     const handleRegisterClick = () => {
