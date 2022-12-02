@@ -6,7 +6,7 @@ type AuthState = {
     token: string
     isLoggedIn: boolean
     user: undefined | User
-    loadingUser: boolean
+    isLoadingUser: boolean
     userError: string
 }
 
@@ -14,7 +14,7 @@ const initAuthState: AuthState = {
     token: getToken(),
     isLoggedIn: false,
     user: undefined,
-    loadingUser: false,
+    isLoadingUser: false,
     userError: ''
 }
 
@@ -33,8 +33,8 @@ export const authSlice = createSlice({
             state.isLoggedIn = false
             state.user = undefined
         },
-        setLoadingUser: (state, action: PayloadAction<boolean>) => {
-            state.loadingUser = action.payload
+        setIsLoadingUser: (state, action: PayloadAction<boolean>) => {
+            state.isLoadingUser = action.payload
         },
         setUserError: (state, action: PayloadAction<string>) => {
             state.userError = action.payload
@@ -45,7 +45,7 @@ export const authSlice = createSlice({
 export const {
     login,
     logout,
-    setLoadingUser,
+    setIsLoadingUser,
     setUserError
 } = authSlice.actions
 

@@ -1,4 +1,4 @@
-import {Avatar, Button, Link, Stack} from "@mui/material";
+import {Avatar, Button, Link, Skeleton, Stack} from "@mui/material"
 import {PrimaryButton} from "./Style";
 import {setIsNavDrawerOpen} from "../../redux/slices/uiSlice";
 import {useNavigate} from "react-router-dom";
@@ -9,7 +9,7 @@ import AvatarImage from "../../assets/avatarPic.png";
 const DesktopNav = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {isLoggedIn, user} = useSelector((state: RootState) => state.auth)
+    const {isLoggedIn, user, isLoadingUser} = useSelector((state: RootState) => state.auth)
 
     const handleNavClick = (path: string) => {
         navigate(path)
@@ -48,7 +48,13 @@ const DesktopNav = () => {
             >
                 Latest Sightings
             </Link>
-            {isLoggedIn && user &&
+            {isLoadingUser &&
+                <Stack direction='row' spacing={5} alignItems='center'>
+                    <Skeleton width={150} height={30} variant='rounded'/>
+                    <Skeleton width={40} height={40} variant='circular'/>
+                </Stack>
+            }
+            {isLoggedIn && user && !isLoadingUser &&
                 <>
                     <Link
                         component={Button}
@@ -77,7 +83,7 @@ const DesktopNav = () => {
                 </Stack>
                 </>
             }
-            {!isLoggedIn &&
+            {!isLoggedIn && !isLoadingUser &&
                 <div>
                     <Link
                         component={Button}
