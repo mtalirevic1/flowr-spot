@@ -4,7 +4,7 @@ import {RootState} from "../redux/store";
 import {getUserRequest} from "../service/UserService";
 import {login, setIsLoadingUser} from "../redux/slices/authSlice";
 
-export const useAuthHook = () => {
+export const useAuth = () => {
     const dispatch = useDispatch()
     const {token, user} = useSelector((state: RootState) => state.auth)
 

@@ -3,11 +3,11 @@ import createTheme from './theme'
 import {THEME} from './theme/types'
 import {RouterProvider} from 'react-router-dom'
 import {router} from './router/routes'
-import {useAuthHook} from "./hooks/useAuthHook";
+import {useAuth} from "./hooks/useAuth";
 
 const App = () => {
     const theme = createTheme(THEME.DEFAULT)
-    useAuthHook()
+    useAuth()
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
