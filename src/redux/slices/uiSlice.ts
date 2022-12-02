@@ -20,10 +20,10 @@ export const uiSlice = createSlice({
             state.isNavDrawerOpen = action.payload
         },
         setIsLoginModalOpen: (state, action: PayloadAction<boolean>) =>{
-            state.isNavDrawerOpen = action.payload
+            state.isLoginModalOpen = action.payload
         },
         setIsRegisterModalOpen: (state, action: PayloadAction<boolean>) =>{
-            state.isNavDrawerOpen = action.payload
+            state.isRegisterModalOpen = action.payload
         },
     }
 })
