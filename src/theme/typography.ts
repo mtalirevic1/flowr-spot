@@ -13,24 +13,24 @@ const typography: TypographyOptions = {
     fontWeightMedium: 500,
     fontWeightBold: 600,
     h1: {
-        fontSize: '2rem',
+        fontSize: '40px',
         fontWeight: 600,
-        lineHeight: 1.25,
+        lineHeight: '40px',
     },
     h2: {
-        fontSize: '1.75rem',
+        fontSize: '25px',
         fontWeight: 600,
-        lineHeight: 1.25,
+        lineHeight: '25px',
     },
     h3: {
-        fontSize: '1.5rem',
-        fontWeight: 600,
-        lineHeight: 1.25,
+        fontSize: '20px',
+        fontWeight: 500,
+        lineHeight: '20px',
     },
     h4: {
-        fontSize: '1.125rem',
-        fontWeight: 500,
-        lineHeight: 1.25,
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '12px',
     },
     h5: {
         fontSize: '14px',
@@ -38,9 +38,9 @@ const typography: TypographyOptions = {
         lineHeight: '14px',
     },
     h6: {
-        fontSize: '1rem',
-        fontWeight: 500,
-        lineHeight: 1.25,
+        fontSize: '13px',
+        fontWeight: 400,
+        lineHeight: '13px',
     },
     body1: {
         fontSize: 13,
