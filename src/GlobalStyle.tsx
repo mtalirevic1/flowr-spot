@@ -2,7 +2,7 @@ import {FC} from 'react'
 import {
     Box,
     Button,
-    ButtonProps,
+    ButtonProps, IconButton as MuiIconButton,
     styled,
     TextField as MuiTextField,
     TextFieldProps,
@@ -17,6 +17,13 @@ export const ColumnBox = styled(Box)`
   align-items: center;
   width: 100%;
   height: 100%;
+`
+
+export const IconButtonNoBg = styled(MuiIconButton)`
+  background: 0;
+  :hover {
+    background: 0;
+  }
 `
 
 export const PrimaryButton: FC<ButtonProps> = (props) => {

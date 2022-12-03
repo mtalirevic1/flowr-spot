@@ -1,5 +1,5 @@
 import {Box, Dialog, Typography, useMediaQuery, useTheme} from '@mui/material'
-import {PrimaryButton, TextField} from '../../GlobalStyle'
+import {IconButtonNoBg, PrimaryButton, TextField} from '../../GlobalStyle'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {setIsLoginModalOpen} from '../../redux/slices/uiSlice'
@@ -8,6 +8,7 @@ import {useLocation} from 'react-router-dom'
 import {ChangeEvent, useEffect, useState} from 'react'
 import {loginUserRequest} from '../../service/UserService'
 import {login} from '../../redux/slices/authSlice'
+import CloseIcon from '@mui/icons-material/Close'
 
 const LoginModal = () => {
     const theme = useTheme()
@@ -75,6 +76,22 @@ const LoginModal = () => {
                 }
             }}
         >
+            {!isMobile &&
+                <IconButtonNoBg
+                    sx={{
+                        position: 'absolute',
+                        top: '13px',
+                        right: '13px',
+                    }}
+                    onClick={handleClose}
+                >
+                    <CloseIcon
+                        fontSize="large"
+                        sx={{
+                            color: (theme) => theme.palette.neutral.main,
+                        }}
+                    />
+                </IconButtonNoBg>}
             <Box
                 sx={{
                     display: 'flex',
@@ -98,7 +115,7 @@ const LoginModal = () => {
                     label="Password"
                     sx={{width: '380px', height: '50px', mb: '20px'}}
                     value={password}
-                    type='password'
+                    type="password"
                     onChange={handlePasswordChange}
                     error={error}
                 />

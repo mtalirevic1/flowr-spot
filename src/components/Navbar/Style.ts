@@ -1,17 +1,8 @@
 import {
     styled,
-    IconButton as MuiIconButton,
     ListItemText as MuiListItemText,
     ListItemButton as MuiListItemButton, Button
 } from '@mui/material'
-
-export const IconButton = styled(MuiIconButton)`
-  background: 0;
-
-  :hover {
-    background: 0;
-  }
-`
 
 export const ListItemText = styled(MuiListItemText)`
   padding-left: 30px;
