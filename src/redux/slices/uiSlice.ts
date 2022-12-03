@@ -21,9 +21,15 @@ export const uiSlice = createSlice({
         },
         setIsLoginModalOpen: (state, action: PayloadAction<boolean>) =>{
             state.isLoginModalOpen = action.payload
+            if(action.payload){
+                state.isRegisterModalOpen = false
+            }
         },
         setIsRegisterModalOpen: (state, action: PayloadAction<boolean>) =>{
             state.isRegisterModalOpen = action.payload
+            if(action.payload){
+                state.isLoginModalOpen = false
+            }
         },
     }
 })
