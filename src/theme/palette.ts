@@ -13,15 +13,15 @@ const palette : ThemePalette = {
             light: '#EAA79E'
         },
         secondary: {
-            main: '#1e19bd',
+            main: '#334144',
             contrastText: '#FFF',
             light: '#49e1f2',
             background: '#1976D2'
         },
         neutral: {
             main: '#949EA0',
-            background: '#DFE5EA',
-            light: '#D4D8D9',
+            background: '#F5F6F7',
+            light: '#DFE5EA',
         },
         success: {
             main: '#5fb760'
