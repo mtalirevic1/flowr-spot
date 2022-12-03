@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useCallback, useEffect} from "react";
+import {useCallback, useLayoutEffect} from "react";
 import {RootState} from "../redux/store";
 import {getUserRequest} from "../service/UserService";
 import {login, setIsLoadingUser} from "../redux/slices/authSlice";
@@ -17,7 +17,7 @@ export const useAuth = () => {
     }, [token])
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!token || user) return
         loginUser()
     }, [])
