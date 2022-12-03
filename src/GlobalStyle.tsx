@@ -1,5 +1,14 @@
 import {FC} from 'react'
-import {Box, styled, TextField as MuiTextField, TextFieldProps} from '@mui/material'
+import {
+    Box,
+    Button,
+    ButtonProps,
+    styled,
+    TextField as MuiTextField,
+    TextFieldProps,
+    useMediaQuery,
+    useTheme
+} from '@mui/material'
 
 
 export const ColumnBox = styled(Box)`
@@ -9,6 +18,30 @@ export const ColumnBox = styled(Box)`
   width: 100%;
   height: 100%;
 `
+
+export const PrimaryButton: FC<ButtonProps> = (props) => {
+    const theme = useTheme()
+    const isMobile = useMediaQuery(theme.breakpoints.between('xs', 'md'))
+    const boxShadow = isMobile ? `0px 15px 20px ${theme.palette.primary.light}33` : ''
+    return (
+        <Button
+            {...props}
+            sx={{
+                borderRadius: '3px',
+                '&:hover' : {
+                    background: theme.palette.primary.main,
+                    boxShadow
+                },
+                boxShadow,
+                ...props.sx
+            }}
+            variant="contained"
+            color="primary"
+        >
+            {props.children}
+        </Button>
+    )
+}
 
 
 export const TextField: FC<TextFieldProps> = (props) => {
@@ -24,6 +57,7 @@ export const TextField: FC<TextFieldProps> = (props) => {
             }}
             InputProps={{
                 sx: {
+                    color: (theme) => theme.palette.secondary.main,
                     background: (theme) => theme.palette.neutral.background,
                     borderRadius: '3px',
                     border: (theme) => `1px solid ${theme.palette.neutral.light}`,
