@@ -4,7 +4,6 @@ import {THEME} from './theme/types'
 import {RouterProvider} from 'react-router-dom'
 import {router} from './router/routes'
 import {useAuth} from "./hooks/useAuth";
-import LoginModal from './components/Modal/LoginModal'
 
 const App = () => {
     const theme = createTheme(THEME.DEFAULT)
@@ -13,7 +12,6 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <CssBaseline/>
             <RouterProvider router={router}/>
-            <LoginModal/>
         </ThemeProvider>
     )
 }

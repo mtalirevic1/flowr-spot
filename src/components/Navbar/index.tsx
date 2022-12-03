@@ -5,6 +5,7 @@ import {NAVBAR_HEIGHT} from '../../constants/layout'
 import {useSelector} from "react-redux"
 import {RootState} from "../../redux/store"
 import {useNavigate} from 'react-router-dom'
+import LoginModal from '../Modal/LoginModal'
 
 const Navbar = () => {
     const theme = useTheme()
@@ -12,6 +13,7 @@ const Navbar = () => {
     const isNotDesktop = useMediaQuery(theme.breakpoints.between('xs', 'md'))
     const {isNavDrawerOpen} = useSelector((state: RootState) => state.ui)
     return (
+        <>
             <AppBar
                 elevation={0}
                 position="fixed"
@@ -46,6 +48,8 @@ const Navbar = () => {
                     <NavMenu/>
                 </Toolbar>
             </AppBar>
+            <LoginModal/>
+        </>
     )
 }
 
