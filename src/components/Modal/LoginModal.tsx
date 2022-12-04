@@ -2,7 +2,7 @@ import {Box, Dialog, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {IconButtonNoBg, PrimaryButton, TextField} from '../../GlobalStyle'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
-import {setIsLoginModalOpen, showErrorSnackbar} from '../../redux/slices/uiSlice'
+import {setIsLoginModalOpen, setIsLoginSuccessSnackbarOpen, showErrorSnackbar} from '../../redux/slices/uiSlice'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
 import {useLocation} from 'react-router-dom'
 import {ChangeEvent, useEffect, useState} from 'react'
@@ -54,7 +54,10 @@ const LoginModal = () => {
         }
         loginUserRequest(email, password).then(({token, user}) => {
             dispatch(login({token, user}))
-            handleClose()
+            setError(false)
+            setEmail('')
+            setPassword('')
+            dispatch(setIsLoginSuccessSnackbarOpen(true))
         }).catch((err: Error) => {
             dispatch(showErrorSnackbar(err.message))
             setError(true)
