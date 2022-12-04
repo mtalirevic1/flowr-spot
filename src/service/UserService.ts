@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {User} from '../model/user'
+import {User, UserRegistration} from '../model/user'
 import {AuthResponse} from "../model/authResponse";
 
 axios.defaults.baseURL = "https://flowrspot-api.herokuapp.com/api/v1"
@@ -8,9 +8,9 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 const axiosInstance = axios.create()
 
-export const registerUserRequest = async (user: User): Promise<string> => {
+export const registerUserRequest = async (user: UserRegistration): Promise<string> => {
     const res = await axiosInstance.post('/users/register', user)
-    if (res.status >= 300) throw new Error('Unable to register user')
+    if (res.status >= 300) throw new Error(res.data.error)
     return res.data.auth_token
 }
 
@@ -24,7 +24,7 @@ export const getUserRequest = async (token: string): Promise<User> => {
 
 export const loginUserRequest = async (email: string, password: string): Promise<AuthResponse> => {
     const res = await axiosInstance.post('/users/login', {email, password})
-    if (res.status >= 300) throw new Error(res.data.error)
+    if (res.status >= 300) throw new Error('ERROR')
     const user = await getUserRequest(res.data.auth_token)
     return {token: res.data.auth_token, user}
 }

@@ -4,12 +4,16 @@ type UiState = {
     isNavDrawerOpen: boolean
     isLoginModalOpen: boolean
     isRegisterModalOpen: boolean
+    errorMessage: string
+    isErrorSnackbarOpen: boolean
 }
 
 const initUiState: UiState = {
     isNavDrawerOpen: false,
     isLoginModalOpen: false,
-    isRegisterModalOpen: false
+    isRegisterModalOpen: false,
+    errorMessage: '',
+    isErrorSnackbarOpen: false
 }
 
 export const uiSlice = createSlice({
@@ -31,13 +35,22 @@ export const uiSlice = createSlice({
                 state.isLoginModalOpen = false
             }
         },
+        showErrorSnackbar: (state, action: PayloadAction<string>) => {
+            state.errorMessage = action.payload
+            state.isErrorSnackbarOpen = true
+        },
+        hideErrorSnackbar: (state) => {
+            state.isErrorSnackbarOpen = false
+        }
     }
 })
 
 export const {
     setIsRegisterModalOpen,
     setIsLoginModalOpen,
-    setIsNavDrawerOpen
+    setIsNavDrawerOpen,
+    showErrorSnackbar,
+    hideErrorSnackbar
 } = uiSlice.actions
 
 export default uiSlice.reducer

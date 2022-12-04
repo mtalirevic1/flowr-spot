@@ -3,11 +3,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {useLocation} from 'react-router-dom'
 import {ChangeEvent, useEffect, useState} from 'react'
-import {setIsRegisterModalOpen} from '../../redux/slices/uiSlice'
+import {setIsRegisterModalOpen, showErrorSnackbar} from '../../redux/slices/uiSlice'
 import {ErrorTooltip, IconButtonNoBg, PrimaryButton, TextField} from '../../GlobalStyle'
 import CloseIcon from '@mui/icons-material/Close'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
 import {isEmailValid, isPasswordValid} from '../../util/validation'
+import {registerUserRequest} from '../../service/UserService'
 
 const RegisterModal = () => {
     const theme = useTheme()
@@ -45,6 +46,24 @@ const RegisterModal = () => {
 
     const handleSubmit = () => {
         setHasSubmitted(true)
+        if (
+            !isEmailValid(email) ||
+            !isPasswordValid(password) ||
+            !firstName ||
+            !lastName
+        ) return
+        registerUserRequest({
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            password,
+            date_of_birth: ''
+        }).then(() => {
+            //show success plus login button
+            dispatch(setIsRegisterModalOpen(false))
+        }).catch((err: Error) =>{
+            dispatch(showErrorSnackbar(err.message))
+        })
     }
 
     const handleClose = () => {

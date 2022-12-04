@@ -4,6 +4,7 @@ import {THEME} from './theme/types'
 import {RouterProvider} from 'react-router-dom'
 import {router} from './router/routes'
 import {useAuth} from "./hooks/useAuth";
+import ErrorSnackbar from './components/Snackbar/ErrorSnackbar'
 
 const App = () => {
     const theme = createTheme(THEME.DEFAULT)
@@ -12,6 +13,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <CssBaseline/>
             <RouterProvider router={router}/>
+            <ErrorSnackbar/>
         </ThemeProvider>
     )
 }
