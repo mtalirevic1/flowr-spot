@@ -1,14 +1,15 @@
-import {FC} from 'react'
+import {FC, forwardRef} from 'react'
 import {
     Box,
     Button,
     ButtonProps, IconButton as MuiIconButton,
     styled,
     TextField as MuiTextField,
-    TextFieldProps, Tooltip, TooltipProps,
+    TextFieldProps,
     useMediaQuery,
     useTheme
 } from '@mui/material'
+import Tooltip, {TooltipProps, tooltipClasses} from '@mui/material/Tooltip'
 
 
 export const ColumnBox = styled(Box)`
@@ -27,15 +28,16 @@ export const IconButtonNoBg = styled(MuiIconButton)`
   }
 `
 
-const ToBeStyledTooltip: FC<TooltipProps> = ({className, ...props}) => (
-    <Tooltip {...props} classes={{tooltip: className}}>
-        {props.children}
-    </Tooltip>
-)
-
-export const ErrorTooltip = styled(ToBeStyledTooltip)`
-  background: ${({theme}) => theme.palette.error.main};
-`
+export const ErrorTooltip = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} arrow classes={{ popper: className }}  children={props.children}/>
+))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+        color: theme.palette.error.main,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: theme.palette.error.main,
+    },
+}));
 
 export const PrimaryButton: FC<ButtonProps> = (props) => {
     const theme = useTheme()
@@ -62,14 +64,14 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
 }
 
 
-export const TextField: FC<TextFieldProps> = (props) => {
+export const TextField: FC<TextFieldProps> = forwardRef((props, ref) => {
     return (
         <MuiTextField
             InputLabelProps={{
                 sx: {
-                    color: (theme) => theme.palette.neutral.main,
+                    color: (theme) => props.error ? theme.palette.error.main : theme.palette.neutral.main,
                     '&.Mui-focused': {
-                        color: (theme) => theme.palette.neutral.main
+                        color: (theme) => props.error ? theme.palette.error.main : theme.palette.neutral.main
                     }
                 }
             }}
@@ -78,7 +80,7 @@ export const TextField: FC<TextFieldProps> = (props) => {
                     color: (theme) => theme.palette.secondary.main,
                     background: (theme) => theme.palette.neutral.background,
                     borderRadius: '3px',
-                    border: (theme) => `1px solid ${theme.palette.neutral.light}`,
+                    border: (theme) => `1px solid ${props.error ? theme.palette.error.main : theme.palette.neutral.light}`,
                     '&:hover': {
                         background: (theme) => theme.palette.neutral.background
                     },
@@ -90,7 +92,8 @@ export const TextField: FC<TextFieldProps> = (props) => {
             }}
             {...props}
             variant="filled"
+            ref={ref}
         />
     )
-}
+})
 

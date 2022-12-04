@@ -27,7 +27,7 @@ const palette : ThemePalette = {
             main: '#5fb760'
         },
         error: {
-            main: '#f16460'
+            main: '#F45050'
         }
     },
     [THEME.BLUE]: {}
