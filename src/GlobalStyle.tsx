@@ -5,7 +5,7 @@ import {
     ButtonProps, IconButton as MuiIconButton,
     styled,
     TextField as MuiTextField,
-    TextFieldProps,
+    TextFieldProps, Tooltip, TooltipProps,
     useMediaQuery,
     useTheme
 } from '@mui/material'
@@ -21,9 +21,20 @@ export const ColumnBox = styled(Box)`
 
 export const IconButtonNoBg = styled(MuiIconButton)`
   background: 0;
+
   :hover {
     background: 0;
   }
+`
+
+const ToBeStyledTooltip: FC<TooltipProps> = ({className, ...props}) => (
+    <Tooltip {...props} classes={{tooltip: className}}>
+        {props.children}
+    </Tooltip>
+)
+
+export const ErrorTooltip = styled(ToBeStyledTooltip)`
+  background: ${({theme}) => theme.palette.error.main};
 `
 
 export const PrimaryButton: FC<ButtonProps> = (props) => {
@@ -35,7 +46,7 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
             {...props}
             sx={{
                 borderRadius: '3px',
-                '&:hover' : {
+                '&:hover': {
                     background: theme.palette.primary.main,
                     boxShadow
                 },

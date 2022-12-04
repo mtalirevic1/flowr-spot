@@ -1,10 +1,10 @@
-import {Avatar, Button, ButtonBase, Link, Skeleton, Stack} from "@mui/material"
-import {PrimaryButton} from "./Style"
-import {setIsLoginModalOpen, setIsNavDrawerOpen} from "../../redux/slices/uiSlice"
+import {Avatar, Button, ButtonBase, Link, Skeleton, Stack, Typography} from "@mui/material"
+import {setIsLoginModalOpen, setIsNavDrawerOpen, setIsRegisterModalOpen} from "../../redux/slices/uiSlice"
 import {useNavigate} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../../redux/store"
 import AvatarImage from "../../assets/avatarPic.png"
+import {PrimaryButton} from '../../GlobalStyle'
 
 const DesktopNav = () => {
     const navigate = useNavigate()
@@ -23,6 +23,7 @@ const DesktopNav = () => {
 
     const handleRegisterClick = () => {
         dispatch(setIsNavDrawerOpen(false))
+        dispatch(setIsRegisterModalOpen(true))
     }
 
     const handleUserClick = () => {
@@ -98,8 +99,16 @@ const DesktopNav = () => {
                     >
                         Login
                     </Link>
-                    <PrimaryButton variant="contained" onClick={handleRegisterClick}>
-                        New Account
+                    <PrimaryButton
+                        sx={{
+                            width: '140px',
+                            height: '40px',
+                            borderRadius: '50px',
+                        }}
+                        onClick={handleRegisterClick}>
+                        <Typography variant='h5'>
+                            New Account
+                        </Typography>
                     </PrimaryButton>
                 </div>
             }
