@@ -1,10 +1,11 @@
 import {Drawer, List, Typography} from "@mui/material"
-import {ListItemText, ListItemButton, ButtonContainer, PrimaryButton} from './Style'
+import {ListItemText, ListItemButton, ButtonContainer} from './Style'
 import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
-import {setIsLoginModalOpen, setIsNavDrawerOpen} from "../../redux/slices/uiSlice"
+import {setIsLoginModalOpen, setIsNavDrawerOpen, setIsRegisterModalOpen} from "../../redux/slices/uiSlice"
+import {PrimaryButton} from '../../GlobalStyle'
 
 const NavDrawer = () => {
     const navigate = useNavigate()
@@ -24,6 +25,7 @@ const NavDrawer = () => {
 
     const handleRegisterClick = () => {
         dispatch(setIsNavDrawerOpen(false))
+        dispatch(setIsRegisterModalOpen(true))
     }
 
     const handleUserClick = () => {
@@ -78,8 +80,16 @@ const NavDrawer = () => {
                             <ListItemText primary={<Typography variant="h5" color="primary">Login</Typography>}/>
                         </ListItemButton>
                         <ButtonContainer>
-                            <PrimaryButton variant='contained' onClick={handleRegisterClick}>
-                                New Account
+                            <PrimaryButton
+                                sx={{
+                                    width: '140px',
+                                    height: '40px',
+                                    borderRadius: '50px',
+                                }}
+                                onClick={handleRegisterClick}>
+                                <Typography variant='h5'>
+                                    New Account
+                                </Typography>
                             </PrimaryButton>
                         </ButtonContainer>
                     </>
