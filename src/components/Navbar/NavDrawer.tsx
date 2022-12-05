@@ -4,7 +4,12 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
-import {setIsLoginModalOpen, setIsNavDrawerOpen, setIsRegisterModalOpen} from "../../redux/slices/uiSlice"
+import {
+    setIsLoginModalOpen,
+    setIsNavDrawerOpen,
+    setIsProfileModalOpen,
+    setIsRegisterModalOpen
+} from "../../redux/slices/uiSlice"
 import {PrimaryButton} from '../../GlobalStyle'
 
 const NavDrawer = () => {
@@ -30,6 +35,7 @@ const NavDrawer = () => {
 
     const handleUserClick = () => {
         dispatch(setIsNavDrawerOpen(false))
+        dispatch(setIsProfileModalOpen(true))
     }
 
     return (

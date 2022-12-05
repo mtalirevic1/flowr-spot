@@ -1,5 +1,10 @@
 import {Avatar, Button, ButtonBase, Link, Skeleton, Stack, Typography} from "@mui/material"
-import {setIsLoginModalOpen, setIsNavDrawerOpen, setIsRegisterModalOpen} from "../../redux/slices/uiSlice"
+import {
+    setIsLoginModalOpen,
+    setIsNavDrawerOpen,
+    setIsProfileModalOpen,
+    setIsRegisterModalOpen
+} from "../../redux/slices/uiSlice"
 import {useNavigate} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import {RootState} from "../../redux/store"
@@ -28,6 +33,7 @@ const DesktopNav = () => {
 
     const handleUserClick = () => {
         dispatch(setIsNavDrawerOpen(false))
+        dispatch(setIsProfileModalOpen(true))
     }
 
     return (
