@@ -14,7 +14,7 @@ const typography: TypographyOptions = {
     fontWeightBold: 600,
     h1: {
         fontSize: '40px',
-        fontWeight: 600,
+        fontWeight: 300,
         lineHeight: '40px',
     },
     h2: {

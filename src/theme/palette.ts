@@ -15,8 +15,7 @@ const palette : ThemePalette = {
         secondary: {
             main: '#334144',
             contrastText: '#FFF',
-            light: '#49e1f2',
-            background: '#1976D2'
+            background: '#F2F2F2'
         },
         neutral: {
             main: '#949EA0',
