@@ -26,8 +26,8 @@ export const getUserRequest = async (token: string): Promise<User> => {
     const config = {headers: {Authorization: token}}
     try {
         const userRes = await axiosInstance.get('/users/me', config)
-        const {first_name, last_name} = userRes.data.user
-        return {first_name, last_name}
+        const {first_name, last_name, id} = userRes.data.user
+        return {first_name, last_name, id}
     } catch (e) {
         const errorString = 'Unable to get user data'
         if (axios.isAxiosError(e)) {
