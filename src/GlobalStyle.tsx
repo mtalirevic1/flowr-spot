@@ -71,17 +71,16 @@ export const TextField: FC<TextFieldProps> = forwardRef((props, ref) => {
             InputLabelProps={{
                 ...props.InputLabelProps,
                 sx: {
-                    ...props.sx,
                     color: (theme) => props.error ? theme.palette.error.main : theme.palette.neutral.main,
                     '&.Mui-focused': {
                         color: (theme) => props.error ? theme.palette.error.main : theme.palette.neutral.main
-                    }
+                    },
+                    ...props.sx,
                 }
             }}
             InputProps={{
                 ...props.InputProps,
                 sx: {
-                    ...props.sx,
                     color: (theme) => theme.palette.secondary.main,
                     background: (theme) => theme.palette.neutral.background,
                     borderRadius: '3px',
@@ -91,7 +90,8 @@ export const TextField: FC<TextFieldProps> = forwardRef((props, ref) => {
                     },
                     '&.Mui-focused': {
                         background: (theme) => theme.palette.neutral.background
-                    }
+                    },
+                    ...props.sx,
                 },
                 disableUnderline: true
             }}
