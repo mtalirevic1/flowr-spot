@@ -1,4 +1,4 @@
-import {Box, Dialog, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {Box, Button, Dialog, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {IconButtonNoBg, PrimaryButton, TextField} from '../../GlobalStyle'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
@@ -70,13 +70,13 @@ const LoginModal = () => {
             onClose={handleClose}
             fullScreen={isMobile}
             sx={{
-                zIndex: isMobile ? 8 : 11,
+                zIndex: isMobile ? 9998 : 10001,
             }}
             PaperProps={{
                 sx: {
                     display: 'flex', alignItems: 'center',
-                    zIndex: isMobile ? 8 : 11,
-                    overflow: 'clip'
+                    zIndex: isMobile ? 9998 : 10001,
+                    overflow: 'inherit'
                 }
             }}
         >
@@ -121,13 +121,31 @@ const LoginModal = () => {
                     disabled={isLoginSuccessSnackbarOpen}
                 />
                 <PrimaryButton
-                    sx={{width: '380px', height: '50px', mb: '20px'}}
+                    sx={{width: '380px', height: '50px'}}
                     onClick={handleSubmit}
                     disabled={isLoginSuccessSnackbarOpen}
                 >
                     Login to your Account
                 </PrimaryButton>
             </Box>
+            {!isMobile &&
+                <Typography
+                    variant="h6"
+                    component={Button}
+                    onClick={handleClose}
+                    disableRipple
+                    sx={{
+                        position: 'absolute',
+                        bottom: '-50px',
+                        opacity: 0.5,
+                        color: (theme) => theme.palette.common.white,
+                        '&:hover': {
+                            background: 0
+                        }
+                    }}>
+                    I don't want to Login
+                </Typography>
+            }
         </Dialog>
     )
 }

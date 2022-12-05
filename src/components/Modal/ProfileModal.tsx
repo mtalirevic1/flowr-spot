@@ -39,12 +39,12 @@ const ProfileModal = () => {
             onClose={handleClose}
             fullScreen={isMobile}
             sx={{
-                zIndex: isMobile ? 8 : 11,
+                zIndex: isMobile ? 9998 : 10001,
             }}
             PaperProps={{
                 sx: {
                     display: 'flex', alignItems: 'center',
-                    zIndex: isMobile ? 8 : 11,
+                    zIndex: isMobile ? 9998 : 10001,
                     overflow: 'clip'
                 }
             }}

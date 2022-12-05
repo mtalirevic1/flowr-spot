@@ -1,4 +1,4 @@
-import {Box, Dialog, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {Box, Button, Dialog, Typography, useMediaQuery, useTheme} from '@mui/material'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {useLocation} from 'react-router-dom'
@@ -93,14 +93,14 @@ const RegisterModal = () => {
             onClose={handleClose}
             fullScreen={isMobile}
             sx={{
-                zIndex: isMobile ? 8 : 11,
+                zIndex: isMobile ? 9998 : 10001,
             }}
             PaperProps={{
                 sx: {
                     display: 'flex',
                     alignItems: 'center',
-                    zIndex: isMobile ? 8 : 11,
-                    overflow: 'clip'
+                    zIndex: isMobile ? 9998 : 10001,
+                    overflow: 'inherit'
                 }
             }}
         >
@@ -168,43 +168,43 @@ const RegisterModal = () => {
                     open={hasSubmitted && !isDateValid(dateOfBirth)}
                 >
                     <div>
-                    {isMobile ?
-                        <MobileDatePicker
-                            inputFormat="MMM DD, YYYY"
-                            disableMaskedInput
-                            onChange={handleDateOfBirthChange}
-                            value={dateOfBirth}
-                            maxDate={dayjs().add(-1, 'day')}
-                            disableHighlightToday
-                            DialogProps={{sx: {zIndex: 10000}}}
-                            renderInput={(params) =>
-                                <TextField
-                                    {...params}
-                                    label="Date of Birth"
-                                    error={hasSubmitted && !isDateValid(dateOfBirth)}
-                                    sx={{width: '380px', height: '50px', mb: '10px'}}
-                                    ref={params.ref}
-                                    disabled={isRegistrationSuccessSnackbarOpen}
-                                />}
-                        />
-                        : <DesktopDatePicker
-                            inputFormat="MMM DD, YYYY"
-                            disableMaskedInput
-                            onChange={handleDateOfBirthChange}
-                            value={dateOfBirth}
-                            maxDate={dayjs().add(-1, 'day')}
-                            disableHighlightToday
-                            renderInput={(params) =>
-                                <TextField
-                                    {...params}
-                                    label="Date of Birth"
-                                    error={hasSubmitted && !isDateValid(dateOfBirth)}
-                                    sx={{width: '380px', height: '50px', mb: '10px'}}
-                                    ref={params.ref}
-                                    disabled={isRegistrationSuccessSnackbarOpen}
-                                />}
-                        />
-                    }
+                        {isMobile ?
+                            <MobileDatePicker
+                                inputFormat="MMM DD, YYYY"
+                                disableMaskedInput
+                                onChange={handleDateOfBirthChange}
+                                value={dateOfBirth}
+                                maxDate={dayjs().add(-1, 'day')}
+                                disableHighlightToday
+                                DialogProps={{sx: {zIndex: 10000}}}
+                                renderInput={(params) =>
+                                    <TextField
+                                        {...params}
+                                        label="Date of Birth"
+                                        error={hasSubmitted && !isDateValid(dateOfBirth)}
+                                        sx={{width: '380px', height: '50px', mb: '10px'}}
+                                        ref={params.ref}
+                                        disabled={isRegistrationSuccessSnackbarOpen}
+                                    />}
+                            />
+                            : <DesktopDatePicker
+                                inputFormat="MMM DD, YYYY"
+                                disableMaskedInput
+                                onChange={handleDateOfBirthChange}
+                                value={dateOfBirth}
+                                maxDate={dayjs().add(-1, 'day')}
+                                disableHighlightToday
+                                renderInput={(params) =>
+                                    <TextField
+                                        {...params}
+                                        label="Date of Birth"
+                                        error={hasSubmitted && !isDateValid(dateOfBirth)}
+                                        sx={{width: '380px', height: '50px', mb: '10px'}}
+                                        ref={params.ref}
+                                        disabled={isRegistrationSuccessSnackbarOpen}
+                                    />}
+                            />
+                        }
                     </div>
                 </ErrorTooltip>
                 <ErrorTooltip
@@ -237,13 +237,31 @@ const RegisterModal = () => {
                     />
                 </ErrorTooltip>
                 <PrimaryButton
-                    sx={{width: '380px', height: '50px', mb: '20px'}}
+                    sx={{width: '380px', height: '50px'}}
                     onClick={handleSubmit}
                     disabled={isRegistrationSuccessSnackbarOpen}
                 >
                     Create Account
                 </PrimaryButton>
             </Box>
+            {!isMobile &&
+                <Typography
+                    variant="h6"
+                    component={Button}
+                    onClick={handleClose}
+                    disableRipple
+                    sx={{
+                        position: 'absolute',
+                        bottom: '-50px',
+                        opacity: 0.5,
+                        color: (theme) => theme.palette.common.white,
+                        '&:hover': {
+                            background: 0
+                        }
+                    }}>
+                    I don't want to register
+                </Typography>
+            }
         </Dialog>
     )
 }
