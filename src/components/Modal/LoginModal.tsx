@@ -82,20 +82,15 @@ const LoginModal = () => {
         >
             {!isMobile &&
                 <IconButtonNoBg
-                    sx={{
-                        position: 'absolute',
-                        top: '13px',
-                        right: '13px',
-                    }}
+                    sx={{position: 'absolute', top: '13px', right: '13px',}}
                     onClick={handleClose}
                 >
                     <CloseIcon
                         fontSize="large"
-                        sx={{
-                            color: (theme) => theme.palette.neutral.main,
-                        }}
+                        sx={{color: (theme) => theme.palette.neutral.main,}}
                     />
-                </IconButtonNoBg>}
+                </IconButtonNoBg>
+            }
             <Box
                 sx={{
                     display: 'flex',
