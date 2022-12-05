@@ -9,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
 import AvatarImage from '../../assets/avatarPic.png'
 import {ProfileInfo} from './Style'
+import {logout} from '../../redux/slices/authSlice'
 
 const ProfileModal = () => {
     const theme = useTheme()
@@ -25,6 +26,11 @@ const ProfileModal = () => {
 
     const handleClose = () => {
         dispatch(setIsProfileModalOpen(false))
+    }
+
+    const handleLogoutClick = () => {
+        dispatch(logout())
+        handleClose()
     }
 
     return (
@@ -107,7 +113,10 @@ const ProfileModal = () => {
                         flexDirection: 'column',
                     }}
                 >
-                    <PrimaryButton sx={{width: '150px', height: '50px', mt: '70px'}}>
+                    <PrimaryButton
+                        sx={{width: '150px', height: '50px', mt: '70px'}}
+                        onClick={handleLogoutClick}
+                    >
                         Logout
                     </PrimaryButton>
                 </Box>
