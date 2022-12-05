@@ -67,8 +67,11 @@ export const PrimaryButton: FC<ButtonProps> = (props) => {
 export const TextField: FC<TextFieldProps> = forwardRef((props, ref) => {
     return (
         <MuiTextField
+            {...props}
             InputLabelProps={{
+                ...props.InputLabelProps,
                 sx: {
+                    ...props.sx,
                     color: (theme) => props.error ? theme.palette.error.main : theme.palette.neutral.main,
                     '&.Mui-focused': {
                         color: (theme) => props.error ? theme.palette.error.main : theme.palette.neutral.main
@@ -76,7 +79,9 @@ export const TextField: FC<TextFieldProps> = forwardRef((props, ref) => {
                 }
             }}
             InputProps={{
+                ...props.InputProps,
                 sx: {
+                    ...props.sx,
                     color: (theme) => theme.palette.secondary.main,
                     background: (theme) => theme.palette.neutral.background,
                     borderRadius: '3px',
@@ -90,7 +95,6 @@ export const TextField: FC<TextFieldProps> = forwardRef((props, ref) => {
                 },
                 disableUnderline: true
             }}
-            {...props}
             variant="filled"
             ref={ref}
         />

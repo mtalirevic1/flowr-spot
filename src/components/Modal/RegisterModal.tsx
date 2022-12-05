@@ -7,8 +7,10 @@ import {setIsRegisterModalOpen, showErrorSnackbar} from '../../redux/slices/uiSl
 import {ErrorTooltip, IconButtonNoBg, PrimaryButton, TextField} from '../../GlobalStyle'
 import CloseIcon from '@mui/icons-material/Close'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
-import {isEmailValid, isPasswordValid} from '../../util/validation'
+import {isDateValid, isEmailValid, isPasswordValid} from '../../util/validation'
 import {registerUserRequest} from '../../service/UserService'
+import {DesktopDatePicker, MobileDatePicker} from '@mui/x-date-pickers'
+import dayjs, {Dayjs} from 'dayjs'
 
 const RegisterModal = () => {
     const theme = useTheme()
@@ -27,6 +29,7 @@ const RegisterModal = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [dateOfBirth, setDateOfBirth] = useState<Dayjs | null>(null)
 
     const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFirstName(e.target.value)
@@ -44,11 +47,16 @@ const RegisterModal = () => {
         setPassword(e.target.value)
     }
 
+    const handleDateOfBirthChange = (date: Dayjs | null) => {
+        setDateOfBirth(date)
+    }
+
     const handleSubmit = () => {
         setHasSubmitted(true)
         if (
             !isEmailValid(email) ||
             !isPasswordValid(password) ||
+            !isDateValid(dateOfBirth) ||
             !firstName ||
             !lastName
         ) return
@@ -57,11 +65,11 @@ const RegisterModal = () => {
             last_name: lastName,
             email,
             password,
-            date_of_birth: ''
+            date_of_birth: dateOfBirth!.toISOString()
         }).then(() => {
             //show success plus login button
             dispatch(setIsRegisterModalOpen(false))
-        }).catch((err: Error) =>{
+        }).catch((err: Error) => {
             dispatch(showErrorSnackbar(err.message))
         })
     }
@@ -122,7 +130,7 @@ const RegisterModal = () => {
                 </Typography>
                 <Box>
                     <ErrorTooltip
-                        title="Please enter your name"
+                        title="Please enter your Name"
                         placement={isMobile ? 'top' : 'left'}
                         open={hasSubmitted && !firstName}
                     >
@@ -135,7 +143,7 @@ const RegisterModal = () => {
                         />
                     </ErrorTooltip>
                     <ErrorTooltip
-                        title="Please enter your last name"
+                        title="Please enter your Last Name"
                         placement={isMobile ? 'top' : 'right'}
                         open={hasSubmitted && !lastName}
                     >
@@ -148,6 +156,48 @@ const RegisterModal = () => {
                         />
                     </ErrorTooltip>
                 </Box>
+                <ErrorTooltip
+                    title="Please enter a valid Date of Birth"
+                    placement={isMobile ? 'bottom' : 'right'}
+                    open={hasSubmitted && !isDateValid(dateOfBirth)}
+                >
+                    <div>
+                    {isMobile ?
+                        <MobileDatePicker
+                            inputFormat="MMM DD, YYYY"
+                            disableMaskedInput
+                            onChange={handleDateOfBirthChange}
+                            value={dateOfBirth}
+                            maxDate={dayjs().add(-1, 'day')}
+                            disableHighlightToday
+                            renderInput={(params) =>
+                                <TextField
+                                    {...params}
+                                    label="Date of Birth"
+                                    error={hasSubmitted && !isDateValid(dateOfBirth)}
+                                    sx={{width: '380px', height: '50px', mb: '10px'}}
+                                    ref={params.ref}
+                                />}
+                        />
+                        : <DesktopDatePicker
+                            inputFormat="MMM DD, YYYY"
+                            disableMaskedInput
+                            onChange={handleDateOfBirthChange}
+                            value={dateOfBirth}
+                            maxDate={dayjs().add(-1, 'day')}
+                            disableHighlightToday
+                            renderInput={(params) =>
+                                <TextField
+                                    {...params}
+                                    label="Date of Birth"
+                                    error={hasSubmitted && !isDateValid(dateOfBirth)}
+                                    sx={{width: '380px', height: '50px', mb: '10px'}}
+                                    ref={params.ref}
+                                />}
+                        />
+                    }
+                    </div>
+                </ErrorTooltip>
                 <ErrorTooltip
                     title="Please enter a valid Email Address"
                     placement={isMobile ? 'bottom' : 'right'}
