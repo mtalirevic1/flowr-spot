@@ -170,6 +170,7 @@ const RegisterModal = () => {
                             value={dateOfBirth}
                             maxDate={dayjs().add(-1, 'day')}
                             disableHighlightToday
+                            DialogProps={{sx: {zIndex: 10000}}}
                             renderInput={(params) =>
                                 <TextField
                                     {...params}
