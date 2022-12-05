@@ -15,7 +15,7 @@ const LoginModal = () => {
     const isMobile = useMediaQuery(theme.breakpoints.between('xs', 'md'))
 
     const dispatch = useDispatch()
-    const {isLoginModalOpen} = useSelector((state: RootState) => state.ui)
+    const {isLoginModalOpen, isLoginSuccessSnackbarOpen} = useSelector((state: RootState) => state.ui)
 
     const location = useLocation()
     useEffect(() => {
@@ -114,6 +114,7 @@ const LoginModal = () => {
                     value={email}
                     onChange={handleEmailChange}
                     error={error}
+                    disabled={isLoginSuccessSnackbarOpen}
                 />
                 <TextField
                     label="Password"
@@ -122,10 +123,12 @@ const LoginModal = () => {
                     type="password"
                     onChange={handlePasswordChange}
                     error={error}
+                    disabled={isLoginSuccessSnackbarOpen}
                 />
                 <PrimaryButton
                     sx={{width: '380px', height: '50px', mb: '20px'}}
                     onClick={handleSubmit}
+                    disabled={isLoginSuccessSnackbarOpen}
                 >
                     Login to your Account
                 </PrimaryButton>

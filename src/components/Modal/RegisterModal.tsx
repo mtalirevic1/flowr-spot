@@ -21,7 +21,7 @@ const RegisterModal = () => {
     const isMobile = useMediaQuery(theme.breakpoints.between('xs', 'md'))
 
     const dispatch = useDispatch()
-    const {isRegisterModalOpen} = useSelector((state: RootState) => state.ui)
+    const {isRegisterModalOpen, isRegistrationSuccessSnackbarOpen} = useSelector((state: RootState) => state.ui)
 
     const location = useLocation()
     useEffect(() => {
@@ -144,6 +144,7 @@ const RegisterModal = () => {
                             value={firstName}
                             onChange={handleFirstNameChange}
                             error={hasSubmitted && !firstName}
+                            disabled={isRegistrationSuccessSnackbarOpen}
                         />
                     </ErrorTooltip>
                     <ErrorTooltip
@@ -157,6 +158,7 @@ const RegisterModal = () => {
                             value={lastName}
                             onChange={handleLastNameChange}
                             error={hasSubmitted && !lastName}
+                            disabled={isRegistrationSuccessSnackbarOpen}
                         />
                     </ErrorTooltip>
                 </Box>
@@ -182,6 +184,7 @@ const RegisterModal = () => {
                                     error={hasSubmitted && !isDateValid(dateOfBirth)}
                                     sx={{width: '380px', height: '50px', mb: '10px'}}
                                     ref={params.ref}
+                                    disabled={isRegistrationSuccessSnackbarOpen}
                                 />}
                         />
                         : <DesktopDatePicker
@@ -198,6 +201,7 @@ const RegisterModal = () => {
                                     error={hasSubmitted && !isDateValid(dateOfBirth)}
                                     sx={{width: '380px', height: '50px', mb: '10px'}}
                                     ref={params.ref}
+                                    disabled={isRegistrationSuccessSnackbarOpen}
                                 />}
                         />
                     }
@@ -214,6 +218,7 @@ const RegisterModal = () => {
                         value={email}
                         onChange={handleEmailChange}
                         error={hasSubmitted && !isEmailValid(email)}
+                        disabled={isRegistrationSuccessSnackbarOpen}
                     />
                 </ErrorTooltip>
                 <ErrorTooltip
@@ -228,11 +233,13 @@ const RegisterModal = () => {
                         type="password"
                         onChange={handlePasswordChange}
                         error={hasSubmitted && !isPasswordValid(password)}
+                        disabled={isRegistrationSuccessSnackbarOpen}
                     />
                 </ErrorTooltip>
                 <PrimaryButton
                     sx={{width: '380px', height: '50px', mb: '20px'}}
                     onClick={handleSubmit}
+                    disabled={isRegistrationSuccessSnackbarOpen}
                 >
                     Create Account
                 </PrimaryButton>
