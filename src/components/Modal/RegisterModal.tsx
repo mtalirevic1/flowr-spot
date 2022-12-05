@@ -126,7 +126,7 @@ const RegisterModal = () => {
                     alignItems: 'center',
                     flexDirection: 'column',
                     p: isMobile ? '' : '30px',
-                    mt: isMobile ? `calc(${NAVBAR_HEIGHT} + 150px)` : '',
+                    mt: isMobile ? `calc(${NAVBAR_HEIGHT} + 80px)` : '',
                 }}
             >
                 <Typography variant="h3" mb="30px" color="secondary">
