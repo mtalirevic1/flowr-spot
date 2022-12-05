@@ -7,6 +7,7 @@ import {RootState} from "../../redux/store"
 import {useNavigate} from 'react-router-dom'
 import LoginModal from '../Modal/LoginModal'
 import RegisterModal from '../Modal/RegisterModal'
+import ProfileModal from '../Modal/ProfileModal'
 
 const Navbar = () => {
     const theme = useTheme()
@@ -51,6 +52,7 @@ const Navbar = () => {
             </AppBar>
             <LoginModal/>
             <RegisterModal/>
+            <ProfileModal/>
         </>
     )
 }
