@@ -1,7 +1,11 @@
 import {Alert, Button, Snackbar} from '@mui/material'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
-import {setIsLoginModalOpen, setIsRegistrationSuccessSnackbarOpen} from '../../redux/slices/uiSlice'
+import {
+    setIsLoginModalOpen,
+    setIsRegisterModalOpen,
+    setIsRegistrationSuccessSnackbarOpen
+} from '../../redux/slices/uiSlice'
 
 const RegistrationSuccessSnackbar = () => {
     const dispatch = useDispatch()
@@ -9,6 +13,7 @@ const RegistrationSuccessSnackbar = () => {
 
     const handleOkPress = () => {
         dispatch(setIsRegistrationSuccessSnackbarOpen(false))
+        dispatch(setIsRegisterModalOpen(false))
         dispatch(setIsLoginModalOpen(true))
     }
 

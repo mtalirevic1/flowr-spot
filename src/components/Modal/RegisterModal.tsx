@@ -3,7 +3,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
 import {useLocation} from 'react-router-dom'
 import {ChangeEvent, useEffect, useState} from 'react'
-import {setIsRegisterModalOpen, showErrorSnackbar} from '../../redux/slices/uiSlice'
+import {
+    setIsRegisterModalOpen,
+    setIsRegistrationSuccessSnackbarOpen,
+    showErrorSnackbar
+} from '../../redux/slices/uiSlice'
 import {ErrorTooltip, IconButtonNoBg, PrimaryButton, TextField} from '../../GlobalStyle'
 import CloseIcon from '@mui/icons-material/Close'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
@@ -68,7 +72,7 @@ const RegisterModal = () => {
             date_of_birth: dateOfBirth!.toISOString()
         }).then(() => {
             //show success plus login button
-            dispatch(setIsRegisterModalOpen(false))
+            dispatch(setIsRegistrationSuccessSnackbarOpen(true))
         }).catch((err: Error) => {
             dispatch(showErrorSnackbar(err.message))
         })

@@ -21,7 +21,7 @@ const LoginSuccessSnackbar = () => {
         <Snackbar open={isLoginSuccessSnackbarOpen}>
             <Alert severity="success"
                    action={
-                       <Stack spacing={4}>
+                       <Stack spacing={2} direction='row'>
                            <Button
                                color="success"
                                onClick={handleOkPress}
