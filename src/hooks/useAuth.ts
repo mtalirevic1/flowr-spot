@@ -3,6 +3,7 @@ import {useCallback, useLayoutEffect} from "react";
 import {RootState} from "../redux/store";
 import {getUserRequest} from "../service/UserService";
 import {login, setIsLoadingUser} from "../redux/slices/authSlice";
+import {showErrorSnackbar} from '../redux/slices/uiSlice'
 
 export const useAuth = () => {
     const dispatch = useDispatch()
@@ -13,7 +14,7 @@ export const useAuth = () => {
         getUserRequest(token).then(user => {
             dispatch(login({token, user}))
             dispatch(setIsLoadingUser(false))
-        }).catch(e => console.log(e))
+        }).catch(e => dispatch(showErrorSnackbar(e.message)))
     }, [token])
 
 
