@@ -1,11 +1,33 @@
 import {ColumnBox, IconButtonNoBg} from '../../GlobalStyle'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
 import HeroImage from '../../assets/heroImage.png'
-import {InputBase, Typography} from '@mui/material'
+import {Grid, InputBase, Typography, useMediaQuery, useTheme} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
+import {useSelector} from 'react-redux'
+import {RootState} from '../../redux/store'
+import FlowerCard from './FlowerCard'
+import {useFlowers} from '../../hooks/useFlowers'
+import Loader from './Loader'
+import {ChangeEvent, useState} from 'react'
 
 
 const Home = () => {
+    const theme = useTheme()
+    const isDesktop = useMediaQuery(theme.breakpoints.between('md', 'xl'))
+
+    const {isLoggedIn} = useSelector((state: RootState) => state.auth)
+    const {flowers, isLoadingFlowers, fetchFlowers} = useFlowers()
+
+    const [search, setSearch] = useState('')
+
+    const handleFetchFlowers = () =>{
+        fetchFlowers(search)
+    }
+
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>{
+        setSearch(e.target.value)
+    }
+
     return (
         <ColumnBox
             mt={NAVBAR_HEIGHT}
@@ -40,6 +62,8 @@ const Home = () => {
                     Explore between more than 8.427 sightings
                 </Typography>
                 <InputBase
+                    value={search}
+                    onChange={handleSearchChange}
                     sx={{
                         background: (theme) => theme.palette.common.white,
                         borderRadius: '3px',
@@ -55,12 +79,54 @@ const Home = () => {
                     }}
                     placeholder="Looking for something specific?"
                     endAdornment={
-                        <IconButtonNoBg>
-                            <SearchIcon fontSize='large' color="primary"/>
+                        <IconButtonNoBg onClick={handleFetchFlowers}>
+                            <SearchIcon fontSize="large" color="primary"/>
                         </IconButtonNoBg>
                     }
                 />
             </div>
+            <Grid
+                display='flex'
+                justifyContent='center'
+                gap={5}
+
+                container
+                mt={isDesktop ? '70px' : '40px'}
+                mb={'100px'}
+            >
+                {!isLoadingFlowers &&
+                    <>
+                        {flowers.map(({
+                                          id,
+                                          profile_picture,
+                                          name,
+                                          latin_name,
+                                          sightings,
+                                          favorite
+                                      }) => (
+                            <Grid key={id} item xs={6} sm={5} md={4} lg={3} xl={2}>
+                                <FlowerCard
+                                    flower={{
+                                        id,
+                                        profile_picture,
+                                        name,
+                                        latin_name,
+                                        favorite,
+                                        sightings
+                                    }}
+                                    isLoggedIn={isLoggedIn}
+                                />
+                            </Grid>
+                        ))}
+                    </>
+                }
+                {isLoadingFlowers &&
+                    <Grid item xs={12}>
+                        <Loader/>
+                    </Grid>
+                }
+            </Grid>
+
         </ColumnBox>
     )
 }

@@ -10,7 +10,7 @@ const palette : ThemePalette = {
         primary: {
             main: '#ECBCB3',
             contrastText: '#FFF',
-            light: '#eaa89f'
+            light: '#eaa89f',
         },
         secondary: {
             main: '#334144',
@@ -21,6 +21,7 @@ const palette : ThemePalette = {
             main: '#949EA0',
             background: '#F5F6F7',
             light: '#DFE5EA',
+            dark: '#D4D8D9'
         },
         success: {
             main: '#5fb760'
