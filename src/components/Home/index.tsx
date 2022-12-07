@@ -103,6 +103,7 @@ const Home = () => {
                                           favorite
                                       }) => (
                                 <FlowerCard
+                                    key={id}
                                     flower={{
                                         id,
                                         profile_picture,
