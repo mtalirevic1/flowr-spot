@@ -1,7 +1,7 @@
 import {ColumnBox, IconButtonNoBg} from '../../GlobalStyle'
 import {NAVBAR_HEIGHT} from '../../constants/layout'
 import HeroImage from '../../assets/heroImage.png'
-import {Grid, InputBase, Typography, useMediaQuery, useTheme} from '@mui/material'
+import {InputBase, Typography, useMediaQuery, useTheme} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import {useSelector} from 'react-redux'
 import {RootState} from '../../redux/store'
@@ -9,6 +9,7 @@ import FlowerCard from './FlowerCard'
 import {useFlowers} from '../../hooks/useFlowers'
 import Loader from './Loader'
 import {ChangeEvent, useState} from 'react'
+import Grid from './Grid'
 
 
 const Home = () => {
@@ -88,9 +89,6 @@ const Home = () => {
             <Grid
                 display='flex'
                 justifyContent='center'
-                gap={5}
-
-                container
                 mt={isDesktop ? '70px' : '40px'}
                 mb={'100px'}
             >
@@ -104,7 +102,6 @@ const Home = () => {
                                           sightings,
                                           favorite
                                       }) => (
-                            <Grid key={id} item xs={6} sm={5} md={4} lg={3} xl={2}>
                                 <FlowerCard
                                     flower={{
                                         id,
@@ -116,14 +113,11 @@ const Home = () => {
                                     }}
                                     isLoggedIn={isLoggedIn}
                                 />
-                            </Grid>
                         ))}
                     </>
                 }
                 {isLoadingFlowers &&
-                    <Grid item xs={12}>
                         <Loader/>
-                    </Grid>
                 }
             </Grid>
 

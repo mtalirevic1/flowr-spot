@@ -6,7 +6,7 @@ const breakpoints: BreakpointsOptions = {
         sm: 421,
         md: 769,
         lg: 1221,
-        xl: 1441,
+        xl: 1651,
     },
 }
 

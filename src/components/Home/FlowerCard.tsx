@@ -64,14 +64,14 @@ const FlowerCard: FC<FlowerCardProps> = ({flower, isLoggedIn}) => {
                                     xs: '-40%',
                                     sm: '-33%',
                                     md: '-40%',
-                                    lg: '-50%',
-                                    xl: '-55%'
+                                    lg: '-52%',
+                                    xl: '-52%'
                                 },
                                 right: {
                                     xs: '-35%',
                                     sm: '-33%',
                                     md: '-33%',
-                                    lg: '-40%',
+                                    lg: '-39%',
                                     xl: '-39%'
                                 },
                                 background: (theme) => isFavorite ? theme.palette.primary.main : 'white',
