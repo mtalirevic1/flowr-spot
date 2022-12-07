@@ -8,7 +8,7 @@ import {RootState} from '../../redux/store'
 import FlowerCard from './FlowerCard'
 import {useFlowers} from '../../hooks/useFlowers'
 import Loader from './Loader'
-import {ChangeEvent, useState} from 'react'
+import {ChangeEvent, useState, KeyboardEvent} from 'react'
 import Grid from './Grid'
 
 
@@ -24,6 +24,11 @@ const Home = () => {
     const handleFetchFlowers = () =>{
         fetchFlowers(search)
     }
+
+    const handleKeyPress = (keyboardEvent: KeyboardEvent<HTMLElement>) => {
+        if (keyboardEvent.key !== 'Enter') return;
+        handleFetchFlowers()
+    };
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) =>{
         setSearch(e.target.value)
@@ -63,6 +68,7 @@ const Home = () => {
                     Explore between more than 8.427 sightings
                 </Typography>
                 <InputBase
+                    onKeyDown={handleKeyPress}
                     value={search}
                     onChange={handleSearchChange}
                     sx={{
