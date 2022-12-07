@@ -17,8 +17,8 @@ const Grid = (props: BoxProps) => {
     }
 
     const calculateGridRowGap = () =>{
-        if(xs) return '15px'
-        if(sm) return '15px'
+        if(xs) return '10px'
+        if(sm) return '10px'
         if(md) return '15px'
         if(lg) return '20px'
         if(xl) return '20px'
