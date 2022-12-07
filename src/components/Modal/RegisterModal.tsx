@@ -134,6 +134,7 @@ const RegisterModal = () => {
                 </Typography>
                 <Box>
                     <ErrorTooltip
+                        sx={{zIndex: isMobile ? 9998 : 10001}}
                         title="Please enter your Name"
                         placement={isMobile ? 'top' : 'left'}
                         open={hasSubmitted && !firstName}
@@ -148,6 +149,7 @@ const RegisterModal = () => {
                         />
                     </ErrorTooltip>
                     <ErrorTooltip
+                        sx={{zIndex: isMobile ? 9998 : 10001}}
                         title="Please enter your Last Name"
                         placement={isMobile ? 'top' : 'right'}
                         open={hasSubmitted && !lastName}
@@ -163,6 +165,7 @@ const RegisterModal = () => {
                     </ErrorTooltip>
                 </Box>
                 <ErrorTooltip
+                    sx={{zIndex: isMobile ? 9998 : 10001}}
                     title="Please enter a valid Date of Birth"
                     placement={isMobile ? 'bottom' : 'right'}
                     open={hasSubmitted && !isDateValid(dateOfBirth)}
@@ -194,6 +197,9 @@ const RegisterModal = () => {
                                 value={dateOfBirth}
                                 maxDate={dayjs().add(-1, 'day')}
                                 disableHighlightToday
+                                PopperProps={{
+                                    sx: {zIndex: 10001}
+                                }}
                                 renderInput={(params) =>
                                     <TextField
                                         {...params}
@@ -208,6 +214,7 @@ const RegisterModal = () => {
                     </div>
                 </ErrorTooltip>
                 <ErrorTooltip
+                    sx={{zIndex: isMobile ? 9998 : 10001}}
                     title="Please enter a valid Email Address"
                     placement={isMobile ? 'bottom' : 'right'}
                     open={hasSubmitted && !isEmailValid(email)}
@@ -222,6 +229,7 @@ const RegisterModal = () => {
                     />
                 </ErrorTooltip>
                 <ErrorTooltip
+                    sx={{zIndex: isMobile ? 9998 : 10001}}
                     title="A valid password has to contain at least 8 characters, 1 digit, 1 lower case letter, 1 upper case letter and 1 special character"
                     placement={isMobile ? 'bottom' : 'right'}
                     open={hasSubmitted && !isPasswordValid(password)}
