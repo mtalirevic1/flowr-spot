@@ -1,0 +1,61 @@
+// Vitest Snapshot v1
+
+exports[`FlowerCard Snapshot > should match DOM Snapshot 1`] = `
+<div>
+  <div
+    className="MuiBox-root css-cqcczv"
+  >
+    <div
+      className="MuiBox-root css-1cfdb0z"
+    >
+      <button
+        className="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-qxah7x-MuiButtonBase-root-MuiIconButton-root"
+        data-testid="favoriteButton"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-lw0a3y-MuiSvgIcon-root"
+          data-testid="StarIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+          />
+        </svg>
+      </button>
+      <h3
+        className="MuiTypography-root MuiTypography-h3 css-1r4bjj5-MuiTypography-root"
+      >
+        Test
+      </h3>
+      <p
+        className="MuiTypography-root MuiTypography-body1 css-9gn7k5-MuiTypography-root"
+      >
+        Testus Testati
+      </p>
+      <p
+        className="MuiTypography-root MuiTypography-body1 css-17hg2cb-MuiTypography-root"
+      >
+        4 sightings
+      </p>
+    </div>
+  </div>
+</div>
+`;

@@ -56,6 +56,7 @@ const FlowerCard: FC<FlowerCardProps> = ({flower, isLoggedIn}) => {
                 >
                     {isLoggedIn &&
                         <IconButton
+                            data-testid = 'favoriteButton'
                             size={isMobile ? 'small' : 'medium'}
                             onClick={() => setIsFavorite(prevFav => !prevFav)}
                             sx={{
@@ -82,9 +83,9 @@ const FlowerCard: FC<FlowerCardProps> = ({flower, isLoggedIn}) => {
                             <StarIcon
                                 fontSize={isMobile ? 'small' : 'medium'}
                                 sx={{
-                                    color: (theme) => isFavorite ? 'white' : theme.palette.neutral.dark,
+                                    color: isFavorite ? 'white' : "#D4D8D9",
                                     '&:hover': {
-                                        color: (theme) => isFavorite ? 'white' : theme.palette.neutral.dark,
+                                        color: isFavorite ? 'white' : "#D4D8D9",
                                     }
                                 }}
                             />
