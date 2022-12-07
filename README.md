@@ -18,3 +18,6 @@ FlowrSpot is a React app which works on all modern web browsers. To build this a
 
 ### Build the app
 `$ vite build`
+
+### Run the tests
+`$ vitest`
