@@ -79,9 +79,10 @@ const ProfileModal = () => {
                                 <Avatar
                                     src={AvatarImage}
                                     alt={`${user.first_name} ${user.last_name}`}
-                                    sx={{width: '80px', height: '80px'}}
+                                    sx={{width: '80px', height: '80px', ml: isMobile ? '' : '60px'}}
                                 />
-                                : <Skeleton width="80px" height="80px" variant="circular"/>
+                                : <Skeleton width="80px" height="80px" variant="circular"
+                                            sx={{ml: isMobile ? '' : '60px'}}/>
                             }
                             <Stack spacing={2}>
                                 {user ?
@@ -99,7 +100,7 @@ const ProfileModal = () => {
                         </Stack>
                     </Box>
                     {user &&
-                        <Stack spacing={6} ml='5px'>
+                        <Stack spacing={6} ml="5px">
                             <ProfileInfo title="First Name" value={user.first_name}/>
                             <ProfileInfo title="Last Name" value={user.last_name}/>
                             <ProfileInfo title="Date of Birth" value="Feb 25, 1998"/>
